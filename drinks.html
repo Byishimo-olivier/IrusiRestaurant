@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irobe Restaurant | Menu</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Edu+VIC+WA+NT+Beginner">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="js/all.js"></script>
+    <style>
+        body {
+            background-color: rgb(3, 35, 69);
+        }
+        #menu-header {
+            background-image: url('image/resto1.webp');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 200px 0;
+        }
+        .card-img-top {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        .main-btn {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            color: whitesmoke;
+            padding: 6px 13px;
+            border-radius: 2px;
+            text-decoration: none;
+        }
+        .main-btn:hover {
+            background-color: #333;
+        }
+
+        .icon-container {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
+
+        .icon-container a {
+            color: white;
+            font-size: 40px;
+            margin-right: 20px;
+            text-decoration: none;
+        }
+
+        .icon-container a:hover {
+            color: #ccc;
+        }
+        .main-button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            height: 50vh;
+        }
+
+        .main-botton, .main-button {
+            margin: 90px;
+            padding: 10px 40px;
+            text-align: center;
+            color: whitesmoke;
+            background-color: #333;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .main-botton:hover, .main-button:hover {
+            background-color: #555;
+        }
+
+    </style>
+</head>
+<body>
+    <header id="menu-header" class="text-center">
+        <div class="icon-container">
+            <a href="index.html" title="Home"><i class="fa-solid fa-bars"></i></a>
+        </div>
+        
+        <div class="container">
+            <a href="" class="btn main-btn my-4 text-capitalize">Reserve a Table</a>
+            <h1>Experience International Fusion Cuisine in the Heart of Kigali</h1>
+            <p>Explore our delicious offerings</p>
+            <a href="Menu.html" class="main-botton"> Foods</a>
+        </div>
+    </header>
+
+    <section id="menu-list" class="text-center">
+        <div class="container">
+            <h2>Appetizers</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="image/bluerhinomedia.jpg" alt="Bruschetta" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">Blandy</h5>
+                            <p class="card-text">$8</p>
+                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="image/pexels-cottonbro.jpg" alt="Spring Rolls" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">Tequilla</h5>
+                            <p class="card-text">$7</p>
+                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="image/pexels-isabella-mendes.jpg" alt="Flesh Juice" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">Flesh Juice</h5>
+                            <p class="card-text">$10</p>
+                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Main Courses</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="image/pexels-karolina.jpg" alt="Grilled Salmon" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">Coca cola</h5>
+                            <p class="card-text">$20</p>
+                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="image/pexels-lina.jpg" alt="Ribeye Steak" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">Ribeye Steak</h5>
+                            <p class="card-text">$25</p>
+                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="image/pexels-t-dw.jpg" alt="Vegetarian Lasagna" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">Vegetarian Lasagna</h5>
+                            <p class="card-text">$18</p>
+                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Desserts</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="image/pexels-fanta.jpg" alt="Cheesecake" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">Cheesecake</h5>
+                            <p class="card-text">$8</p>
+                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="image/pexels-cottonbro.jpg" alt="Tiramisu" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">Tiramisu</h5>
+                            <p class="card-text">$7</p>
+                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="image/pexels-marta-dzedyshko.jpg" alt="Chocolate Mousse" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">Chocolate Mousse</h5>
+                            <p class="card-text">$9</p>
+                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2024 Irobe Restaurant. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="js/jquery-3.7.1.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

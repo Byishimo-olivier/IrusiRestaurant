@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irobe Restaurant | About Us</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <!-- Include Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #about-header {
+            position: relative;
+            background-color: #333; /* Fallback background color */
+            background-size: cover;
+            background-position: center;
+            color: white;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        #about-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Overlay color */
+            z-index: 1;
+        }
+        #about-header .container {
+            position: relative;
+            z-index: 2;
+        }
+        #about-header h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        #about-header p {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+        }
+        .icon-container {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            z-index: 3;
+        }
+
+        .icon-container a {
+            color: white;
+            font-size: 40px;
+            margin-right: 20px;
+            text-decoration: none;
+        }
+
+        .icon-container a:hover {
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="icon-container">
+        <a href="index.html" title="Home"><i class="fas fa-bars"></i></a>
+    </div>
+    <header id="about-header">
+        <div class="container">
+            <h1>About Irobe Restaurant</h1>
+            <p>Our journey in the culinary world</p>
+        </div>
+    </header>
+
+    <section id="our-story" class="text-center py-5">
+        <div class="container">
+            <h2>Our Story</h2>
+            <p>Irobe Restaurant was founded in 2020 with a vision to bring the finest dining experience to Kigali. Our chef, with over 20 years of experience, ensures every dish is crafted with passion and expertise.</p>
+        </div>
+    </section>
+
+    <section id="team" class="text-center py-5">
+        <div class="container">
+            <h2>Meet Our Team</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="image/chef1.jpg" alt="Chef" class="img-fluid rounded-circle mb-3">
+                    <h3>Chef Jean Luc</h3>
+                    <p>Head Chef</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="image/chef2.jpg" alt="Manager" class="img-fluid rounded-circle mb-3">
+                    <h3>Ernest Smith</h3>
+                    <p>Restaurant Manager</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center py-4">
+        <div class="container">
+            <p>&copy; 2024 Irobe Restaurant. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="js/jquery-3.7.1.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
