@@ -1,0 +1,206 @@
+
+.info h2 {
+    word-spacing: 0.6rem;
+   
+}
+.info {
+    background-color: #27030d90;
+}
+
+body{
+    font-family: 'Mr Dafoe', cursive;
+    color: #41251b;
+    height: fit-content;
+}
+.primary-color{
+    color: #d3325f;
+}
+.navbar {
+    padding: 14px 0;
+}
+
+.navbar-brand, .nav-link {
+    color: #fff !important;
+    font-size: 28px;
+}
+.navbar-brand, .nav-link a:hover{
+    color: chocolate;
+}
+
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28120, 120, 120, 0.5%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+.info a {
+    transition: color 2s ease-in-out;
+}
+.info a:hover {
+    color: 242424;
+}
+* Sidebar styling */
+.sidebar {
+    width: 250px;
+    background-color: #f8f9fa;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 20px;
+    border-right: 1px solid #ddd;
+}
+.main-content {
+    margin-right: 250px; /* Same width as the sidebar */
+    padding: 20px;
+    flex: 1;
+}
+
+
+.sidebar .nav-link {
+    padding: 10px 15px;
+    font-size: 1.1rem;
+}
+
+.sidebar .nav-link.active {
+    background-color: #ddd;
+}
+
+/* Main content styling */
+.main-content {
+    margin-left: 250px; /* Same width as the sidebar */
+    padding: 20px;
+    flex: 1;
+}
+
+
+#header {
+    min-height: calc(100vh - 94px);
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(255,0,0,0.5)),
+    url(../image/pexel.jpg);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: relative;
+    padding-top: 40px; /* Optional: Add space above the #header section */
+}
+.height-90{
+    min-height: calc(100vh-94px);
+    min-height: 90vh;
+}
+
+
+.banner h1 {
+    border-top: 6px dotted #c9c1ac;
+    border-bottom: 6px dotted #c9c1ac;
+    margin-bottom: 40px; /* Add more space below the h1 element */
+}
+
+.main-btn {
+    color: #d3325f;
+    font-size: 2rem;
+    border: 2px solid #d3325f;
+    transition: all 1s ease-in-out;
+    margin-bottom: 60px; /* Add space below the "Order Online" button */
+}
+.main-btn:hover{
+    color: 242424;
+    border:2px solid #c9c1ac
+}
+
+.header-link {
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    bottom: 40px; /* Adjust position of the "Allow" button */
+    background: #c9c1ac;
+    border-radius: 10px;
+    transition: all 2s ease;
+    margin-top: 80px; /* Add space above the "Allow" button */
+    transform: translateX(-50%); /* Center the button horizontally */
+}
+
+
+.header-link{
+    color: 242424;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.menu-img {
+    width: 100px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.menu-item span {
+    font-size: 18px;
+    color: #333;
+}
+
+.card-img-top {
+    width: 100%; /* Make images fill the card */
+    height: 250px; /* Adjust the height as needed */
+    object-fit: cover; /* Ensure images cover the card without distortion */
+}
+
+.card {
+    margin-bottom: 20px; /* Add spacing between cards */
+    position: relative; /* Positioning for the button */
+}
+
+.reservation-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.reservation-btn:hover {
+    background-color: #0056b3;
+}
+.contact-info {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.contact-info a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.map-container {
+    margin: 20px 0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.map-container iframe {
+    width: 50%;
+    height: 200px; /* Adjust height as needed */
+    border: 0;
+}
+
+
