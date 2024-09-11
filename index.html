@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Byishimo Olivier</title>
+    <!--bootstrap css-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!--main.css-->
+    <link rel="stylesheet" href="css/main.css">
+    <!--font awesome js-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Edu+VIC+WA+NT+Beginner">
+    <script src="js/all.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+
+</head>
+<body>
+    <!--header section-->
+    <header id="header">
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-transparent position-absolute w-100">
+            <a class="navbar-brand text-white" href="index.html">Irobe Restaurant </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="menu.html">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="aboutUs.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="orderOnline.html">Order Online</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        
+        <!-- Banner Section -->
+        <div class="container" style="padding-top: 150px;"> <!-- Add margin or padding here -->
+            <div class="row height-90 align-items-center justify-content-center">
+                <div class="col">
+                    <div class="banner text-center">
+                        <h1 class="display-1 text-capitalize w-50 mx-auto">
+                            <small>Sushi</small> <strong class="primary-color">monster</strong>
+                        </h1>
+                        <a href="orderOnline.html" class="btn main-btn my-4 text-capitalize">order online</a>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
+        <a href="#special-items" class="btn header-link primary-color"><i class="fas fa-arrow-down"></i></a>
+    </header>
+
+    <div class="container-fluid info p-3" id="top-icons">
+        <div class="col">
+            <h1>follw us </h1>
+        </div>
+        <div class="row">
+            <div class="col d-flex justify-content-between align-items-baseline flex-wrap">
+                <div class="info-icons p-2">
+                    <a href="#" class="mr-2 primary-color"><i class="fab fa-facebook fa-2x"></i></a>
+                    <a href="#" class="mr-2 primary-color"><i class="fab fa-instagram fa-2x"></i></a>
+                    <a href="https://www.linkedin.com/in/byishimo-olivier-75b26726b/" class="mr-2 primary-color"><i class="fab fa-linkedin fa-2x"></i></a>
+                </div>
+           <div class="row">
+        <div class="container">
+            <div class="contact-info">
+                <p><i class="fas fa-map-marker-alt"></i> 
+                    <a href="https://www.google.com/maps?q=495+Sonatube+Kicukiro,+Kigali,+Rwanda" target="_blank">Address: 495 Sonatube Kicukiro, Kigali, Rwanda</a>
+                </p>
+                <p><i class="fas fa-phone"></i> 
+                    <a href="tel:+250783227490">Contact: +250 783 227 490</a>
+                </p>
+                <p><i class="fas fa-envelope"></i> 
+                    <a href="mailto:info@iroberestoraunt.com">Email: info@iroberestoraunt.com</a>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1985.1339343502815!2d30.393424017638604!3d-1.391787455151178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19d4b989c5e4c1c7%3A0x4f4f1fc50e5dfbdf!2s495%20Sonatube%20Kicukiro%2C%20Kigali%2C%20Rwanda!5e0!3m2!1sen!2sus!4v1692122385508!5m2!1sen!2sus" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    
+                <p>&copy; 2024 Byishimo Olivier</p>
+    
+            </div>
+        </div>
+    </div>
+
+<!--jQuery-->
+<script src="js/jquery-3.7.1.js"></script>
+<!--bootstrap js-->
+<script src="js/bootstrap.bundle.min.js"></script>
+<script>
+    document.getElementById('facebook-icon').addEventListener('click', function(event) {
+        event.preventDefault();
+        window.open('https://www.facebook.com/yourprofile', '_blank');
+    });
+
+    document.getElementById('instagram-icon').addEventListener('click', function(event) {
+        event.preventDefault();
+        window.open('https://www.instagram.com/yourprofile', '_blank');
+    });
+
+    document.getElementById('linkedin-icon').addEventListener('click', function(event) {
+        event.preventDefault();
+        window.open('https://www.linkedin.com/in/yourprofile', '_blank');
+    });
+</script>
+</body>
+</html>
