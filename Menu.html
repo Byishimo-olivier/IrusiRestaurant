@@ -3,235 +3,685 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Irobe Restaurant | Menu</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Edu+VIC+WA+NT+Beginner">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="js/all.js"></script>
+    <title>Irobe Restaurant | Culinary Excellence</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            background-color: rgb(2, 12, 50);
-            color: aliceblue;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        #menu-header {
-            background-image: url('image/resto1.webp');
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark-bg: #0a0f1c;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --text-accent: #64ffda;
+            --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
+            --border-radius: 20px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(120, 219, 226, 0.3) 0%, transparent 50%);
+            z-index: -1;
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 15, 28, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .nav-icon {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .nav-icon:hover {
+            color: var(--text-accent);
+            transform: scale(1.1);
+        }
+
+        .nav-button {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('image/resto1.webp');
             background-size: cover;
             background-position: center;
-            color: white;
-            padding: 200px 0;
-        }
-        .card-img-top {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        .card {
-            margin-bottom: 20px;
-            color: aliceblue;
-        }
-        .main-btn {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            color: whitesmoke;
-            padding: 6px 13px;
-            border-radius: 2px;
-            text-decoration: none;
-        }
-        .main-btn:hover {
-            background-color: #333;
+            background-attachment: fixed;
         }
 
-        .icon-container {
-            position: absolute;
-            left: 20px;
-            top: 20px;
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease-out;
         }
 
-        .icon-container a {
-            color: white;
-            font-size: 40px;
-            margin-right: 20px;
-            text-decoration: none;
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff, #64ffda);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textGlow 2s ease-in-out infinite alternate;
         }
 
-        .icon-container a:hover {
-            color: #ccc;
+        @keyframes textGlow {
+            from { filter: drop-shadow(0 0 10px rgba(100, 255, 218, 0.3)); }
+            to { filter: drop-shadow(0 0 20px rgba(100, 255, 218, 0.6)); }
         }
-        .main-botton-container {
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
             display: flex;
+            gap: 1rem;
             justify-content: center;
-            align-items: center;
-            flex-direction: row;
-            height: 50vh;
+            flex-wrap: wrap;
         }
 
-        .main-botton, .main-button {
-            margin: 90px;
-            padding: 10px 40px;
-            text-align: center;
-            color: whitesmoke;
-            background-color: #333;
-            border-radius: 5px;
+        .hero-btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
             text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
         }
 
-        .main-botton:hover, .main-button:hover {
-            background-color: #555;
+        .hero-btn.primary {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: var(--shadow-soft);
         }
 
+        .hero-btn.secondary {
+            background: var(--glass-bg);
+            color: var(--text-primary);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Menu Section */
+        .menu-section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            background: var(--accent-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Category Headers */
+        .category-header {
+            text-align: center;
+            margin: 5rem 0 3rem;
+        }
+
+        .category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 500;
+            color: var(--text-accent);
+            position: relative;
+            display: inline-block;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--secondary-gradient);
+            border-radius: 2px;
+        }
+
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Menu Cards */
+        .menu-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+        }
+
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .menu-card:hover::before {
+            left: 100%;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(100, 255, 218, 0.3);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .menu-card:hover .card-image {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .card-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-accent);
+            margin-bottom: 1rem;
+        }
+
+        .order-btn {
+            background: var(--secondary-gradient);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .order-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(245, 87, 108, 0.4);
+            color: white;
+        }
+
+        .order-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .order-btn:active::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--glass-bg);
+            border-radius: 50%;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links a:hover {
+            background: var(--primary-gradient);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .contact-info p {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-info i {
+            color: var(--text-accent);
+            width: 20px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        /* Scroll animations */
+        @media (prefers-reduced-motion: no-preference) {
+            .menu-card {
+                opacity: 0;
+                transform: translateY(20px);
+                animation: slideInUp 0.6s ease-out forwards;
+            }
+
+            .menu-card:nth-child(1) { animation-delay: 0.1s; }
+            .menu-card:nth-child(2) { animation-delay: 0.2s; }
+            .menu-card:nth-child(3) { animation-delay: 0.3s; }
+
+            @keyframes slideInUp {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        }
+
+        /* Loading animation for images */
+        .card-image {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .card-image[src] {
+            background: none;
+            animation: none;
+        }
     </style>
 </head>
 <body>
-    <header id="menu-header" class="text-center">
-        <div class="icon-container">
-            <a href="index.html" title="Home"><i class="fa-solid fa-bars"></i></a>
-            
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <a href="index.html" class="nav-icon" title="Home">
+                <i class="fas fa-home"></i>
+            </a>
+            <a href="Reservation.html" class="nav-button">
+                Reserve a Table
+            </a>
         </div>
-        
-        <div class="container">
-            <a href="Reservation.html" class="btn main-btn my-4 text-capitalize">Reserve a Table</a>
-            <h1>Experience International Fusion Cuisine in the Heart of Kigali</h1>
-            <p>Explore our delicious offerings</p>
-            <a href="drinks.html" class="main-botton"> Drinks</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Experience International Fusion Cuisine</h1>
+            <p>Discover culinary excellence in the heart of Kigali with our expertly crafted dishes</p>
+            <div class="hero-buttons">
+                <a href="#menu" class="hero-btn primary">Explore Menu</a>
+                <a href="drinks.html" class="hero-btn secondary">View Drinks</a>
+            </div>
         </div>
     </header>
 
-    <section id="menu-list" class="text-center">
-        <div class="container">
-            <h2>Appetizers</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="image/pexels.jpg" alt="Bruschetta" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Bruschetta</h5>
-                            <p class="card-text">$8</p>
-                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="image/chineses.jpeg" alt="Spring Rolls" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Spring Rolls</h5>
-                            <p class="card-text">$7</p>
-                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="image/pexelsa.jpg" alt="Caesar Salad" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Caesar Salad</h5>
-                            <p class="card-text">$10</p>
-                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
-                        </div>
-                    </div>
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+        <div class="section-header">
+            <h2 class="section-title">Our Culinary Journey</h2>
+            <p class="section-subtitle">Each dish tells a story of passion, craftsmanship, and the finest ingredients</p>
+        </div>
+
+        <!-- Appetizers -->
+        <div class="category-header">
+            <h3 class="category-title">Appetizers</h3>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <img src="image/pexels.jpg" alt="Bruschetta" class="card-image">
+                <div class="card-content">
+                    <h4 class="card-title">Artisan Bruschetta</h4>
+                    <p class="card-price">$8</p>
+                    <a href="orderOnline.html" class="order-btn">Order Now</a>
                 </div>
             </div>
-
-            <h2>Main Courses</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="image/valeriya.jpg" alt="Grilled Salmon" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Grilled Salmon</h5>
-                            <p class="card-text">$20</p>
-                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="image/pexel.jpg" alt="Ribeye Steak" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Ribeye Steak</h5>
-                            <p class="card-text">$25</p>
-                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="image/chineses.jpeg" alt="Vegetarian Lasagna" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Vegetarian Lasagna</h5>
-                            <p class="card-text">$18</p>
-                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
-                        </div>
-                    </div>
+            <div class="menu-card">
+                <img src="image/chineses.jpeg" alt="Spring Rolls" class="card-image">
+                <div class="card-content">
+                    <h4 class="card-title">Crispy Spring Rolls</h4>
+                    <p class="card-price">$7</p>
+                    <a href="orderOnline.html" class="order-btn">Order Now</a>
                 </div>
             </div>
+            <div class="menu-card">
+                <img src="image/pexelsa.jpg" alt="Caesar Salad" class="card-image">
+                <div class="card-content">
+                    <h4 class="card-title">Classic Caesar Salad</h4>
+                    <p class="card-price">$10</p>
+                    <a href="orderOnline.html" class="order-btn">Order Now</a>
+                </div>
+            </div>
+        </div>
 
-            <h2>Desserts</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="image/pexelsa.jpg" alt="Cheesecake" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Cheesecake</h5>
-                            <p class="card-text">$8</p>
-                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
-                        </div>
-                    </div>
+        <!-- Main Courses -->
+        <div class="category-header">
+            <h3 class="category-title">Main Courses</h3>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <img src="image/valeriya.jpg" alt="Grilled Salmon" class="card-image">
+                <div class="card-content">
+                    <h4 class="card-title">Atlantic Grilled Salmon</h4>
+                    <p class="card-price">$20</p>
+                    <a href="orderOnline.html" class="order-btn">Order Now</a>
                 </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="image/pixel1.jpg" alt="Tiramisu" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Tiramisu</h5>
-                            <p class="card-text">$7</p>
-                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
-                        </div>
-                    </div>
+            </div>
+            <div class="menu-card">
+                <img src="image/pexel.jpg" alt="Ribeye Steak" class="card-image">
+                <div class="card-content">
+                    <h4 class="card-title">Prime Ribeye Steak</h4>
+                    <p class="card-price">$25</p>
+                    <a href="orderOnline.html" class="order-btn">Order Now</a>
                 </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="image/free-photo.jpeg" alt="Chocolate Mousse" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Chocolate Mousse</h5>
-                            <p class="card-text">$9</p>
-                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
-                        </div>
-                    </div>
+            </div>
+            <div class="menu-card">
+                <img src="image/chineses.jpeg" alt="Vegetarian Lasagna" class="card-image">
+                <div class="card-content">
+                    <h4 class="card-title">Garden Vegetarian Lasagna</h4>
+                    <p class="card-price">$18</p>
+                    <a href="orderOnline.html" class="order-btn">Order Now</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Desserts -->
+        <div class="category-header">
+            <h3 class="category-title">Desserts</h3>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <img src="image/pexelsa.jpg" alt="Cheesecake" class="card-image">
+                <div class="card-content">
+                    <h4 class="card-title">New York Cheesecake</h4>
+                    <p class="card-price">$8</p>
+                    <a href="orderOnline.html" class="order-btn">Order Now</a>
+                </div>
+            </div>
+            <div class="menu-card">
+                <img src="image/pixel1.jpg" alt="Tiramisu" class="card-image">
+                <div class="card-content">
+                    <h4 class="card-title">Classic Tiramisu</h4>
+                    <p class="card-price">$7</p>
+                    <a href="orderOnline.html" class="order-btn">Order Now</a>
+                </div>
+            </div>
+            <div class="menu-card">
+                <img src="image/free-photo.jpeg" alt="Chocolate Mousse" class="card-image">
+                <div class="card-content">
+                    <h4 class="card-title">Belgian Chocolate Mousse</h4>
+                    <p class="card-price">$9</p>
+                    <a href="orderOnline.html" class="order-btn">Order Now</a>
                 </div>
             </div>
         </div>
     </section>
-    
-    <footer>
-        <div class="container-fluid info p-3" id="top-icons">
-            <div class="col">
-                <h1>follw us </h1>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/kigeli_34/?next=%2F" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/byishimo-olivier-75b26726b/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
             </div>
-            <div class="row">
-                <div class="col d-flex justify-content-between align-items-baseline flex-wrap">
-                    <div class="info-icons p-2">
-                        <a href="" class="mr-2 primary-color"><i class="fab fa-facebook fa-2x"></i></a>
-                        <a href="https://www.instagram.com/kigeli_34/?next=%2F" class="mr-2 primary-color"><i class="fab fa-instagram fa-2x"></i></a>
-                        <a href="https://www.linkedin.com/in/byishimo-olivier-75b26726b/" class="mr-2 primary-color"><i class="fab fa-linkedin fa-2x"></i></a>
-                    </div>
-               
-                    <div class="contact-info">
-                        <p><i class="fas fa-map-marker-alt"></i> Address: 495 Sonatube Kicukiro, Kigali, Rwanda</p>
-                        <p><i class="fas fa-phone"></i> Contact: +250 783 227 490</p>
-                        <p><i class="fas fa-envelope"></i> Email: info@iroberestoraunt.com</p>
-                    </div>
-        
+            
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> 495 Sonatube Kicukiro, Kigali, Rwanda</p>
+                    <p><i class="fas fa-phone"></i> +250 783 227 490</p>
+                    <p><i class="fas fa-envelope"></i> info@iroberestoraunt.com</p>
                 </div>
             </div>
         </div>
-    
-        <div class="container text-center">
+        
+        <div class="footer-bottom">
             <p>&copy; 2024 Irobe Restaurant. All rights reserved.</p>
         </div>
     </footer>
-    <script src="js/jquery-3.7.1.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add loading state to images
+        document.querySelectorAll('.card-image').forEach(img => {
+            img.addEventListener('load', function() {
+                this.style.background = 'none';
+                this.style.animation = 'none';
+            });
+        });
+
+        // Add intersection observer for scroll animations
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            });
+
+            document.querySelectorAll('.menu-card').forEach(card => {
+                observer.observe(card);
+            });
+        }
+    </script>
 </body>
 </html>

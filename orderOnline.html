@@ -4,165 +4,808 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Irobe Restaurant | Order Online</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Edu+VIC+WA+NT+Beginner">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="js/all.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --success-gradient: linear-gradient(135deg, #a8e6cf 0%, #56ab2f 100%);
+            --dark-bg: #0a0f1c;
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --glass-bg: rgba(255, 255, 255, 0.12);
+            --input-bg: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --text-accent: #64ffda;
+            --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
+            --shadow-glow: 0 0 30px rgba(100, 255, 218, 0.3);
+            --border-radius: 20px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-        #order-header {
-            position: relative;
-            background-image: url('image/resto2.jpeg'); /* Add your hero image here */
-            background-size: cover;
-            background-position: center;
-            color: white;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-        #order-header::before {
+
+        /* Dynamic animated background */
+        body::before {
             content: '';
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Overlay color */
-            z-index: 1;
-        }
-        #order-header .container {
-            position: relative;
-            z-index: 2;
-        }
-        #order-header h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-        #order-header p {
-            font-size: 1.5em;
-            margin-bottom: 40px;
-        }
-        #order-form {
-    padding: 50px 0;
-    background-color: #f9f9f9; /* Light background color for contrast */
-}
-
-#order-form .container {
-    max-width: 600px; /* Limit the width of the form */
-    background-color: #ffffff; /* White background for the form */
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
-}
-
-#order-form h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-}
-
-#order-form .form-group {
-    margin-bottom: 20px;
-}
-
-#order-form label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: inline-block;
-}
-
-#order-form .form-control {
-    height: 45px; /* Increase the height of input fields */
-    border-radius: 5px; /* Slightly rounded corners */
-    padding: 10px;
-    font-size: 16px;
-}
-
-#order-form .form-control::placeholder {
-    font-size: 14px;
-    color: #888;
-}
-
-#order-form button[type="submit"] {
-    width: 100%;
-    height: 50px;
-    background-color: #007bff; /* Primary blue color */
-    border: none;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-#order-form button[type="submit"]:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
-.icon-container {
-            position: absolute;
-            left: 20px;
-            top: 20px;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 226, 0.2) 0%, transparent 50%);
+            z-index: -1;
+            animation: backgroundFloat 30s ease-in-out infinite;
         }
 
-        .icon-container a {
-            color: white;
-            font-size: 40px;
-            margin-right: 20px;
+        @keyframes backgroundFloat {
+            0%, 100% { 
+                transform: translate(0%, 0%) scale(1);
+                opacity: 0.8;
+            }
+            33% { 
+                transform: translate(-10%, 10%) scale(1.1);
+                opacity: 0.6;
+            }
+            66% { 
+                transform: translate(10%, -10%) scale(0.9);
+                opacity: 0.9;
+            }
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            backdrop-filter: blur(25px);
+            background: rgba(10, 15, 28, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .nav-icon {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             text-decoration: none;
         }
 
-        .icon-container a:hover {
-            color: #ccc;
+        .nav-icon:hover {
+            color: var(--text-accent);
+            transform: scale(1.1);
         }
 
+        .nav-button {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('image/resto2.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 70%, rgba(102, 126, 234, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(245, 87, 108, 0.2) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #fff, #64ffda, #f093fb);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textGlow 3s ease-in-out infinite alternate;
+            text-shadow: 0 0 30px rgba(100, 255, 218, 0.5);
+        }
+
+        @keyframes textGlow {
+            from { filter: drop-shadow(0 0 20px rgba(100, 255, 218, 0.4)); }
+            to { filter: drop-shadow(0 0 35px rgba(240, 147, 251, 0.6)); }
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        .hero-cta {
+            background: var(--accent-gradient);
+            color: white;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-soft);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: var(--shadow-hover);
+            color: white;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Order Form Section */
+        .order-section {
+            padding: 6rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .form-container {
+            background: var(--card-bg);
+            backdrop-filter: blur(25px);
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.1), transparent);
+            transition: left 0.8s;
+        }
+
+        .form-container:hover::before {
+            left: 100%;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            background: var(--secondary-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .form-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            background: var(--input-bg);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--text-accent);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-2px);
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+            font-style: italic;
+        }
+
+        select.form-control {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%2364ffda' viewBox='0 0 16 16'%3e%3cpath d='m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 16px;
+            padding-right: 3rem;
+        }
+
+        select.form-control option {
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            padding: 0.5rem;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Quantity Input with Custom Styling */
+        .quantity-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: var(--input-bg);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .quantity-container:focus-within {
+            border-color: var(--text-accent);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .quantity-btn {
+            background: var(--primary-gradient);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .quantity-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 0.5rem;
+        }
+
+        .quantity-input:focus {
+            outline: none;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            background: var(--success-gradient);
+            color: white;
+            border: none;
+            padding: 1.2rem 2rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Order Summary */
+        .order-summary {
+            background: rgba(100, 255, 218, 0.1);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            display: none;
+        }
+
+        .order-summary.show {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .summary-title {
+            font-weight: 600;
+            color: var(--text-accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .total {
+            border-top: 1px solid rgba(100, 255, 218, 0.3);
+            padding-top: 1rem;
+            margin-top: 1rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 3rem 2rem 1.5rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .footer-content {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .form-container {
+                padding: 2rem;
+            }
+
+            .order-section {
+                padding: 4rem 1rem;
+            }
+        }
+
+        /* Loading animation */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .loading .submit-btn {
+            background: linear-gradient(90deg, #333, #555, #333);
+            background-size: 200% 100%;
+            animation: loadingAnimation 1.5s infinite;
+        }
+
+        @keyframes loadingAnimation {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Success message */
+        .success-message {
+            background: var(--success-gradient);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: successPulse 0.6s ease-out;
+        }
+
+        @keyframes successPulse {
+            0% { transform: scale(0.9); opacity: 0; }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
     </style>
 </head>
 <body>
-    <header id="order-header" class="hero-container text-center">
-        <div class="icon-container">
-            <a href="index.html" title="Home"><i class="fa-solid fa-bars"></i></a>
-            
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <a href="index.html" class="nav-icon" title="Home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="Menu.html" class="nav-button">
+                View Menu
+            </a>
         </div>
-        <div class="container">
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
             <h1>Order Online</h1>
-            <p>Enjoy our delicious dishes from the comfort of your home</p>
+            <p>Enjoy our delicious dishes from the comfort of your home with fast, reliable delivery</p>
+            <a href="#order-form" class="hero-cta">
+                <i class="fas fa-utensils"></i>
+                Start Your Order
+            </a>
         </div>
     </header>
 
-    <section id="order-form" class="text-center py-5">
-        <div class="container">
-            <form action="submit_order.php" method="post">
+    <!-- Order Form Section -->
+    <section id="order-form" class="order-section">
+        <div class="form-container">
+            <div class="form-header">
+                <h2 class="form-title">Place Your Order</h2>
+                <p class="form-subtitle">Select your favorite dishes and we'll deliver them fresh to your door</p>
+            </div>
+
+            <form id="orderForm">
                 <div class="form-group">
-                    <label for="dish">Select Dish:</label>
+                    <label for="dish" class="form-label">
+                        <i class="fas fa-utensils"></i> Select Dish
+                    </label>
                     <select class="form-control" id="dish" name="dish" required>
-                        <option value="Grilled Salmon">Grilled Salmon - $20</option>
-                        <option value="Ribeye Steak">Ribeye Steak - $25</option>
-                        <option value="Caesar Salad">Caesar Salad - $10</option>
+                        <option value="">Choose your dish...</option>
+                        <option value="Grilled Salmon" data-price="20">Atlantic Grilled Salmon - $20</option>
+                        <option value="Ribeye Steak" data-price="25">Prime Ribeye Steak - $25</option>
+                        <option value="Caesar Salad" data-price="10">Classic Caesar Salad - $10</option>
+                        <option value="Vegetarian Lasagna" data-price="18">Garden Vegetarian Lasagna - $18</option>
+                        <option value="Bruschetta" data-price="8">Artisan Bruschetta - $8</option>
+                        <option value="Spring Rolls" data-price="7">Crispy Spring Rolls - $7</option>
                     </select>
                 </div>
+
                 <div class="form-group">
-                    <label for="quantity">Quantity:</label>
-                    <input type="number" class="form-control" id="quantity" name="quantity" required>
+                    <label for="quantity" class="form-label">
+                        <i class="fas fa-plus-minus"></i> Quantity
+                    </label>
+                    <div class="quantity-container">
+                        <button type="button" class="quantity-btn" onclick="decreaseQuantity()">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <input type="number" class="quantity-input" id="quantity" name="quantity" value="1" min="1" max="20" required>
+                        <button type="button" class="quantity-btn" onclick="increaseQuantity()">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
                 </div>
+
                 <div class="form-group">
-                    <label for="address">Delivery Address:</label>
-                    <textarea class="form-control" id="address" name="address" required></textarea>
+                    <label for="name" class="form-label">
+                        <i class="fas fa-user"></i> Full Name
+                    </label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Place Order</button>
+
+                <div class="form-group">
+                    <label for="phone" class="form-label">
+                        <i class="fas fa-phone"></i> Phone Number
+                    </label>
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="+250 XXX XXX XXX" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="address" class="form-label">
+                        <i class="fas fa-map-marker-alt"></i> Delivery Address
+                    </label>
+                    <textarea class="form-control" id="address" name="address" placeholder="Enter your complete delivery address including landmarks" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="instructions" class="form-label">
+                        <i class="fas fa-comment"></i> Special Instructions (Optional)
+                    </label>
+                    <textarea class="form-control" id="instructions" name="instructions" placeholder="Any special requests or dietary requirements..."></textarea>
+                </div>
+
+                <div class="order-summary" id="orderSummary">
+                    <div class="summary-title">Order Summary</div>
+                    <div class="summary-item">
+                        <span>Item:</span>
+                        <span id="summaryItem">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Quantity:</span>
+                        <span id="summaryQuantity">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Unit Price:</span>
+                        <span id="summaryPrice">-</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Total:</span>
+                        <span id="summaryTotal">$0</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    Place Order
+                </button>
+
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i>
+                    Order placed successfully! We'll contact you shortly to confirm delivery details.
+                </div>
             </form>
         </div>
     </section>
 
-    <footer>
-        <div class="container text-center py-4">
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
             <p>&copy; 2024 Irobe Restaurant. All rights reserved.</p>
         </div>
     </footer>
-    <script src="js/jquery-3.7.1.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Quantity controls
+        function decreaseQuantity() {
+            const input = document.getElementById('quantity');
+            if (input.value > 1) {
+                input.value = parseInt(input.value) - 1;
+                updateOrderSummary();
+            }
+        }
+
+        function increaseQuantity() {
+            const input = document.getElementById('quantity');
+            if (input.value < 20) {
+                input.value = parseInt(input.value) + 1;
+                updateOrderSummary();
+            }
+        }
+
+        // Update order summary
+        function updateOrderSummary() {
+            const dishSelect = document.getElementById('dish');
+            const quantityInput = document.getElementById('quantity');
+            const summary = document.getElementById('orderSummary');
+            
+            if (dishSelect.value && quantityInput.value) {
+                const selectedOption = dishSelect.options[dishSelect.selectedIndex];
+                const price = parseFloat(selectedOption.dataset.price) || 0;
+                const quantity = parseInt(quantityInput.value) || 0;
+                const total = price * quantity;
+                
+                document.getElementById('summaryItem').textContent = selectedOption.text.split(' - $')[0];
+                document.getElementById('summaryQuantity').textContent = quantity;
+                document.getElementById('summaryPrice').textContent = `$${price}`;
+                document.getElementById('summaryTotal').textContent = `$${total}`;
+                
+                summary.classList.add('show');
+            } else {
+                summary.classList.remove('show');
+            }
+        }
+
+        // Event listeners
+        document.getElementById('dish').addEventListener('change', updateOrderSummary);
+        document.getElementById('quantity').addEventListener('input', updateOrderSummary);
+
+        // Form submission
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Add loading state
+            document.body.classList.add('loading');
+            
+            // Simulate order processing
+            setTimeout(() => {
+                document.body.classList.remove('loading');
+                document.getElementById('successMessage').classList.add('show');
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    document.getElementById('successMessage').classList.remove('show');
+                    // Reset form
+                    this.reset();
+                    document.getElementById('orderSummary').classList.remove('show');
+                }, 5000);
+            }, 2000);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Dynamic navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav-container');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 15, 28, 0.95)';
+                nav.style.backdropFilter = 'blur(30px)';
+            } else {
+                nav.style.background = 'rgba(10, 15, 28, 0.9)';
+                nav.style.backdropFilter = 'blur(25px)';
+            }
+        });
+
+        // Phone number formatting
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.startsWith('250')) {
+                value = value.substring(3);
+            }
+            if (value.length > 0) {
+                value = '+250 ' + value.match(/.{1,3}/g)?.join(' ') || value;
+            }
+            e.target.value = value;
+        });
+
+        // Form validation styling
+        const inputs = document.querySelectorAll('.form-control');
+        inputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.checkValidity()) {
+                    this.style.borderColor = 'rgba(168, 237, 234, 0.6)';
+                } else {
+                    this.style.borderColor = 'rgba(245, 87, 108, 0.6)';
+                }
+            });
+
+            input.addEventListener('input', function() {
+                this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+            });
+        });
+    </script>
 </body>
 </html>

@@ -3,210 +3,803 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Irobe Restaurant | Menu</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Edu+VIC+WA+NT+Beginner">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="js/all.js"></script>
+    <title>Irobe Restaurant | Premium Beverages</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            background-color: rgb(3, 35, 69);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        #menu-header {
-            background-image: url('image/resto1.webp');
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --cocktail-gradient: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            --wine-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            --beer-gradient: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            --soft-gradient: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+            --dark-bg: #0a0f1c;
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --glass-bg: rgba(255, 255, 255, 0.12);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --text-accent: #64ffda;
+            --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
+            --border-radius: 20px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated liquid background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(255, 154, 158, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(102, 126, 234, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(100, 255, 218, 0.1) 0%, transparent 50%);
+            z-index: -1;
+            animation: liquidFlow 25s ease-in-out infinite;
+        }
+
+        @keyframes liquidFlow {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg);
+                opacity: 0.8;
+            }
+            33% { 
+                transform: scale(1.1) rotate(120deg);
+                opacity: 0.6;
+            }
+            66% { 
+                transform: scale(0.9) rotate(240deg);
+                opacity: 0.9;
+            }
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 15, 28, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .nav-icon {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-icon:hover {
+            color: var(--text-accent);
+            transform: scale(1.1);
+        }
+
+        .nav-button {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('image/resto1.webp');
             background-size: cover;
             background-position: center;
-            color: white;
-            padding: 200px 0;
+            background-attachment: fixed;
         }
-        .card-img-top {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        .card {
-            margin-bottom: 20px;
-        }
-        .main-btn {
+
+        .hero::after {
+            content: '';
             position: absolute;
-            right: 20px;
-            top: 20px;
-            color: whitesmoke;
-            padding: 6px 13px;
-            border-radius: 2px;
-            text-decoration: none;
-        }
-        .main-btn:hover {
-            background-color: #333;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 0%, rgba(10, 15, 28, 0.3) 100%);
         }
 
-        .icon-container {
-            position: absolute;
-            left: 20px;
-            top: 20px;
+        .hero-content {
+            max-width: 900px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            z-index: 2;
         }
 
-        .icon-container a {
-            color: white;
-            font-size: 40px;
-            margin-right: 20px;
-            text-decoration: none;
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff, #64ffda, #ff9a9e);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textGlow 3s ease-in-out infinite alternate;
         }
 
-        .icon-container a:hover {
-            color: #ccc;
+        @keyframes textGlow {
+            from { filter: drop-shadow(0 0 15px rgba(100, 255, 218, 0.4)); }
+            to { filter: drop-shadow(0 0 25px rgba(255, 154, 158, 0.6)); }
         }
-        .main-button-container {
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        .hero-buttons {
             display: flex;
+            gap: 1.5rem;
             justify-content: center;
-            align-items: center;
-            flex-direction: row;
-            height: 50vh;
+            flex-wrap: wrap;
         }
 
-        .main-botton, .main-button {
-            margin: 90px;
-            padding: 10px 40px;
-            text-align: center;
-            color: whitesmoke;
-            background-color: #333;
-            border-radius: 5px;
+        .hero-btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
             text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
         }
 
-        .main-botton:hover, .main-button:hover {
-            background-color: #555;
+        .hero-btn.primary {
+            background: var(--cocktail-gradient);
+            color: white;
+            box-shadow: var(--shadow-soft);
         }
 
+        .hero-btn.secondary {
+            background: var(--glass-bg);
+            color: var(--text-primary);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: var(--shadow-hover);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Beverages Section */
+        .beverages-section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            background: var(--wine-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+
+        /* Category Headers */
+        .category-header {
+            text-align: center;
+            margin: 6rem 0 4rem;
+            position: relative;
+        }
+
+        .category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 500;
+            position: relative;
+            display: inline-block;
+            padding: 0 2rem;
+        }
+
+        .category-title.cocktails {
+            background: var(--cocktail-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .category-title.wines {
+            background: var(--wine-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .category-title.beers {
+            background: var(--beer-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .category-title::before,
+        .category-title::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, currentColor, transparent);
+        }
+
+        .category-title::before {
+            right: 100%;
+            margin-right: 1rem;
+        }
+
+        .category-title::after {
+            left: 100%;
+            margin-left: 1rem;
+        }
+
+        /* Beverages Grid */
+        .beverages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Beverage Cards */
+        .beverage-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(25px);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .beverage-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transition: left 0.6s;
+            z-index: 1;
+        }
+
+        .beverage-card:hover::before {
+            left: 100%;
+        }
+
+        .beverage-card:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(100, 255, 218, 0.4);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .beverage-card:hover .card-image {
+            transform: scale(1.08);
+        }
+
+        .card-content {
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .card-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-price.cocktail { color: #ff9a9e; }
+        .card-price.wine { color: #a8edea; }
+        .card-price.beer { color: #fcb69f; }
+        .card-price.soft { color: #66a6ff; }
+
+        .card-price::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+        }
+
+        .order-btn {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .order-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .order-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        .order-btn:active::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Special drink icons */
+        .drink-icon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .drink-icon.cocktail { background: rgba(255, 154, 158, 0.2); }
+        .drink-icon.wine { background: rgba(168, 237, 234, 0.2); }
+        .drink-icon.beer { background: rgba(252, 182, 159, 0.2); }
+        .drink-icon.soft { background: rgba(102, 166, 255, 0.2); }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 4rem 2rem 2rem;
+            margin-top: 6rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--text-accent), transparent);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .beverages-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .category-title::before,
+            .category-title::after {
+                display: none;
+            }
+        }
+
+        /* Scroll animations */
+        @media (prefers-reduced-motion: no-preference) {
+            .beverage-card {
+                opacity: 0;
+                transform: translateY(30px);
+                animation: slideInUp 0.8s ease-out forwards;
+            }
+
+            .beverage-card:nth-child(1) { animation-delay: 0.1s; }
+            .beverage-card:nth-child(2) { animation-delay: 0.2s; }
+            .beverage-card:nth-child(3) { animation-delay: 0.3s; }
+
+            @keyframes slideInUp {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        }
+
+        /* Loading animation for images */
+        .card-image {
+            background: linear-gradient(90deg, #333 25%, #555 50%, #333 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .card-image[src] {
+            background: none;
+            animation: none;
+        }
     </style>
 </head>
 <body>
-    <header id="menu-header" class="text-center">
-        <div class="icon-container">
-            <a href="index.html" title="Home"><i class="fa-solid fa-bars"></i></a>
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <a href="index.html" class="nav-icon" title="Home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="Reservation.html" class="nav-button">
+                Reserve a Table
+            </a>
         </div>
-        
-        <div class="container">
-            <a href="" class="btn main-btn my-4 text-capitalize">Reserve a Table</a>
-            <h1>Experience International Fusion Cuisine in the Heart of Kigali</h1>
-            <p>Explore our delicious offerings</p>
-            <a href="Menu.html" class="main-botton"> Foods</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Premium Beverages Collection</h1>
+            <p>Crafted cocktails, fine wines, and refreshing drinks to complement your dining experience</p>
+            <div class="hero-buttons">
+                <a href="#beverages" class="hero-btn primary">Explore Drinks</a>
+                <a href="Menu.html" class="hero-btn secondary">View Food Menu</a>
+            </div>
         </div>
     </header>
 
-    <section id="menu-list" class="text-center">
-        <div class="container">
-            <h2>Appetizers</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="image/bluerhinomedia.jpg" alt="Bruschetta" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Blandy</h5>
-                            <p class="card-text">$8</p>
-                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
-                        </div>
-                    </div>
+    <!-- Beverages Section -->
+    <section id="beverages" class="beverages-section">
+        <div class="section-header">
+            <h2 class="section-title">Liquid Artistry</h2>
+            <p class="section-subtitle">Every sip tells a story of craftsmanship and passion</p>
+        </div>
+
+        <!-- Premium Spirits -->
+        <div class="category-header">
+            <h3 class="category-title cocktails">Premium Spirits</h3>
+        </div>
+        <div class="beverages-grid">
+            <div class="beverage-card">
+                <div class="drink-icon cocktail">
+                    <i class="fas fa-cocktail"></i>
                 </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="image/pexels-cottonbro.jpg" alt="Spring Rolls" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Tequilla</h5>
-                            <p class="card-text">$7</p>
-                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="image/pexels-isabella-mendes.jpg" alt="Flesh Juice" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Flesh Juice</h5>
-                            <p class="card-text">$10</p>
-                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
-                        </div>
-                    </div>
+                <img src="image/bluerhinomedia.jpg" alt="Brandy" class="card-image">
+                <div class="card-content">
+                    <h4 class="card-title">Premium Brandy</h4>
+                    <p class="card-price cocktail">$8</p>
+                    <a href="orderOnline.html" class="order-btn">Order Now</a>
                 </div>
             </div>
-
-            <h2>Main Courses</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="image/pexels-karolina.jpg" alt="Grilled Salmon" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Coca cola</h5>
-                            <p class="card-text">$20</p>
-                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
-                        </div>
-                    </div>
+            <div class="beverage-card">
+                <div class="drink-icon cocktail">
+                    <i class="fas fa-glass-martini-alt"></i>
                 </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="image/pexels-lina.jpg" alt="Ribeye Steak" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Ribeye Steak</h5>
-                            <p class="card-text">$25</p>
-                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="image/pexels-t-dw.jpg" alt="Vegetarian Lasagna" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Vegetarian Lasagna</h5>
-                            <p class="card-text">$18</p>
-                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
-                        </div>
-                    </div>
+                <img src="image/pexels-cottonbro.jpg" alt="Tequila" class="card-image">
+                <div class="card-content">
+                    <h4 class="card-title">Premium Tequila</h4>
+                    <p class="card-price cocktail">$7</p>
+                    <a href="orderOnline.html" class="order-btn">Order Now</a>
                 </div>
             </div>
+            <div class="beverage-card">
+                <div class="drink-icon soft">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <img src="image/pexels-isabella-mendes.jpg" alt="Fresh Juice" class="card-image">
+                <div class="card-content">
+                    <h4 class="card-title">Fresh Tropical Juice</h4>
+                    <p class="card-price soft">$10</p>
+                    <a href="orderOnline.html" class="order-btn">Order Now</a>
+                </div>
+            </div>
+        </div>
 
-            <h2>Desserts</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="image/pexels-fanta.jpg" alt="Cheesecake" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Cheesecake</h5>
-                            <p class="card-text">$8</p>
-                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
-                        </div>
-                    </div>
+        <!-- Signature Collection -->
+        <div class="category-header">
+            <h3 class="category-title wines">Signature Collection</h3>
+        </div>
+        <div class="beverages-grid">
+            <div class="beverage-card">
+                <div class="drink-icon soft">
+                    <i class="fas fa-leaf"></i>
                 </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="image/pexels-cottonbro.jpg" alt="Tiramisu" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Tiramisu</h5>
-                            <p class="card-text">$7</p>
-                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
-                        </div>
-                    </div>
+                <img src="image/pexels-karolina.jpg" alt="Coca Cola" class="card-image">
+                <div class="card-content">
+                    <h4 class="card-title">Classic Coca Cola</h4>
+                    <p class="card-price soft">$20</p>
+                    <a href="orderOnline.html" class="order-btn">Order Now</a>
                 </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="image/pexels-marta-dzedyshko.jpg" alt="Chocolate Mousse" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Chocolate Mousse</h5>
-                            <p class="card-text">$9</p>
-                            <a href="orderOnline.html" class="reservation-btn">order Now</a>
-                        </div>
-                    </div>
+            </div>
+            <div class="beverage-card">
+                <div class="drink-icon wine">
+                    <i class="fas fa-wine-glass"></i>
+                </div>
+                <img src="image/pexels-lina.jpg" alt="House Wine" class="card-image">
+                <div class="card-content">
+                    <h4 class="card-title">House Special Wine</h4>
+                    <p class="card-price wine">$25</p>
+                    <a href="orderOnline.html" class="order-btn">Order Now</a>
+                </div>
+            </div>
+            <div class="beverage-card">
+                <div class="drink-icon beer">
+                    <i class="fas fa-beer"></i>
+                </div>
+                <img src="image/pexels-t-dw.jpg" alt="Craft Beer" class="card-image">
+                <div class="card-content">
+                    <h4 class="card-title">Artisan Craft Beer</h4>
+                    <p class="card-price beer">$18</p>
+                    <a href="orderOnline.html" class="order-btn">Order Now</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Specialty Drinks -->
+        <div class="category-header">
+            <h3 class="category-title beers">Specialty Drinks</h3>
+        </div>
+        <div class="beverages-grid">
+            <div class="beverage-card">
+                <div class="drink-icon soft">
+                    <i class="fas fa-glass-water"></i>
+                </div>
+                <img src="image/pexels-fanta.jpg" alt="Specialty Drink" class="card-image">
+                <div class="card-content">
+                    <h4 class="card-title">Signature Refresher</h4>
+                    <p class="card-price soft">$8</p>
+                    <a href="orderOnline.html" class="order-btn">Order Now</a>
+                </div>
+            </div>
+            <div class="beverage-card">
+                <div class="drink-icon cocktail">
+                    <i class="fas fa-cocktail"></i>
+                </div>
+                <img src="image/pexels-cottonbro.jpg" alt="Cocktail Special" class="card-image">
+                <div class="card-content">
+                    <h4 class="card-title">Mixologist's Choice</h4>
+                    <p class="card-price cocktail">$7</p>
+                    <a href="orderOnline.html" class="order-btn">Order Now</a>
+                </div>
+            </div>
+            <div class="beverage-card">
+                <div class="drink-icon wine">
+                    <i class="fas fa-wine-bottle"></i>
+                </div>
+                <img src="image/pexels-marta-dzedyshko.jpg" alt="Premium Selection" class="card-image">
+                <div class="card-content">
+                    <h4 class="card-title">Curator's Selection</h4>
+                    <p class="card-price wine">$9</p>
+                    <a href="orderOnline.html" class="order-btn">Order Now</a>
                 </div>
             </div>
         </div>
     </section>
-    
-    <footer>
-        <div class="container text-center">
-            <p>&copy; 2024 Irobe Restaurant. All rights reserved.</p>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-bottom">
+                <p>&copy; 2024 Irobe Restaurant. All rights reserved.</p>
+            </div>
         </div>
     </footer>
-    <script src="js/jquery-3.7.1.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add loading state to images
+        document.querySelectorAll('.card-image').forEach(img => {
+            img.addEventListener('load', function() {
+                this.style.background = 'none';
+                this.style.animation = 'none';
+            });
+
+            img.addEventListener('error', function() {
+                this.style.background = 'linear-gradient(45deg, #333, #555)';
+                this.style.animation = 'none';
+            });
+        });
+
+        // Enhanced scroll animations with intersection observer
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('.beverage-card').forEach(card => {
+                observer.observe(card);
+            });
+        }
+
+        // Add sparkle effect on hover
+        document.querySelectorAll('.beverage-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.filter = 'brightness(1.1) saturate(1.2)';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.filter = 'brightness(1) saturate(1)';
+            });
+        });
+
+        // Dynamic navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav-container');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 15, 28, 0.95)';
+                nav.style.backdropFilter = 'blur(25px)';
+            } else {
+                nav.style.background = 'rgba(10, 15, 28, 0.9)';
+                nav.style.backdropFilter = 'blur(20px)';
+            }
+        });
+    </script>
 </body>
 </html>
